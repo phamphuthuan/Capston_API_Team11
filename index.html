@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.0/tailwind.min.css"
+      integrity="sha512-ksC7McuoU4VJ07WGtca5INyDRXzGsmhyEEJYzoWBkjC/KwuG+IK/pFnxJFNIGmOd8pmGexOxd3FziCPZXQJ4lA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./phonelist/css/index.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+          <a class="active" href="#">Home</a>
+          <a href="./views/admin.html">Admin</a>
+          <a href="./views/cart.html"
+            ><i class="fa fa-shopping-cart"></i>
+            <span id="cart-count" style="color: blue">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+    
+    <div class="products">
+      <div class="container py-20">
+        <div class="title text-center text-2xl font-medium mb-10">
+          -Featured Products-
+        </div>
+
+        <!-- Thêm dropdown select vào trong HTML -->
+        <div class="filter float_right">
+          <label for="filterSelect" class="mr-2"
+            >Lọc theo loại sản phẩm:
+          </label>
+          <select
+            id="filterSelect"
+            class="form-control"
+            onchange="filterProducts()"
+          >
+            <option value="">Tất cả</option>
+            <option value="samsung">Samsung</option>
+            <option value="iphone">iPhone</option>
+          </select>
+        </div>
+        <div class="clear"></div>
+
+        <div id="product-container" class="list grid grid-cols-3 gap-10">
+          <!-- API gọi tại đây  -->
+        </div>
+      </div>
+    </div>
+    <div class="overlay" id="overlay">
+      <div class="lds-dual-ring"></div>
+    </div>
+    <style>
+      header {
+        position: fixed; /* Đặt phần header cố định */
+        top: 0; /* Đặt phần header ở đầu trang */
+        left: 0;
+        right: 0;
+        background-color: #fff; /* Màu nền cho header */
+        z-index: 999; /* Đảm bảo header hiển thị trên cùng của trang */
+        border-bottom: 1px solid #ccc; /* Đường viền phân tách header và nội dung */
+      }
+
+      .mgtop {
+        margin-top: 4.5rem !important;
+      }
+
+      header .container {
+        height: 60px;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* CSS cho nút "Shop" */
+      .shop {
+        color: #fff; /* Màu chữ mặc định */
+        padding: 10px 20px; /* Kích thước nút */
+        border: none; /* Bỏ viền */
+        cursor: pointer; /* Biểu tượng con trỏ tay khi di chuột qua */
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+          border 0.3s ease-in-out; /* Hiệu ứng mượt khi hover */
+      }
+
+      /* CSS cho hover */
+      .shop:hover {
+        background-color: #2a73dd; /* Màu nền khi hover */
+        color: white;
+        border: 2px solid white;
+      }
+
+      /* CSS cho hover out (không hover) */
+      .shop:not(:hover) {
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+          border 0.3s ease-in-out;
+      }
+
+      /* CSS để áp dụng lớp float-right cho dropdown select */
+      .float_right {
+        margin-bottom: 20px;
+        float: right;
+      }
+
+      .clear::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- my js  -->
+    <script type="module" src="./phonelist/js/cart_index.js"></script>
+    <script type="module" src="./phonelist/js/index.js"></script>
+  </body>
+</html>
